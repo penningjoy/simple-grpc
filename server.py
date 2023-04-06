@@ -26,12 +26,23 @@ class Summation(summation_pb2_grpc.SummationServicer):
     
 
 def server():
-   server = grpc.server(futures.ThreadPoolExecutor(max_workers=2))
-   summation_pb2_grpc.add_SummationServicer_to_server(Summation(), server)
-   server.add_insecure_port('[::]:50051')
-   print("gRPC starting")
-   server.start()
-   server.wait_for_termination()  # will keep the current thread blocked until the server is terminated
+   '''
+   This method prepares and starts the gRPC server.
+   1. Creates the server object with 5 max thread workers
+   2. A Summation service instance is assigned to the server. The server then
+      knows which service to run when requests come in for summation
+   3. Specifies a port
+   4. Starts the server
+   5. The start() method is non-blocking. A new thread will be created
+      to handle requests. The wait_for_termination will keep the thread calling
+      the start() method be blocked until the server is terminated
+   '''
+   server = grpc.server(futures.ThreadPoolExecutor(max_workers=5))      #1
+   summation_pb2_grpc.add_SummationServicer_to_server(Summation(), server) #2
+   server.add_insecure_port('[::]:50051')  #3
+   print("gRPC server starting")
+   server.start()  #4
+   server.wait_for_termination()  #5
 
 
 if __name__ == "__main__":
