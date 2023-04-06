@@ -1,14 +1,17 @@
 syntax = "proto3";
 
+// The summation service definition
 service Summation {
     rpc add(Input) returns (Output) {}
 }
 
+// The request Input containing the two numbers to add
 message Input {
     int32 numberOne = 1;
     int32 numberTwo = 2;
 }
 
+// The response Output containing the sum
 message Output {
     int32 sum = 1;
 }
