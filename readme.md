@@ -1,9 +1,9 @@
 ## A simple gRPC example
 
 The project is a simple example to demonstrate how gRPC works using python ( both server
-and client ). In gRPC, an application, say client, can directly call a method in another
-application, say server, running remotely in a different machine. The operation is almost
-as fact as a local method/function call.
+and client ). In gRPC, an application, client, can directly call a method in another
+application, server, running remotely in a different machine. The operation is almost
+as fast as a local method/function call.
 
 For further reading, refer to [https://grpc.io/docs/what-is-grpc/](https://grpc.io/docs/what-is-grpc/)
 
